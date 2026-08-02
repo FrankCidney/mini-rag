@@ -26,7 +26,7 @@ def load_documents(directory: Path) -> list[Document]:
             )
         )
 
-    return 
+    return documents
 
 def chunk_document(
         document: Document,
@@ -38,7 +38,7 @@ def chunk_document(
         for paragraph in document.text.split("\n\n")
         if paragraph.strip()
     ]
-
+ 
     chunks: list[Chunk] = []
 
     for position in range(0, len(paragraphs), paragraphs_per_chunk):
@@ -57,7 +57,7 @@ def chunk_document(
            )
        )
 
-       return chunks
+    return chunks
 
 def chunk_documents(documents: list[Document]) -> list[Chunk]:
     chunks: list[Chunk] = []
