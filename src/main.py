@@ -30,7 +30,7 @@ def main() -> None:
         )
 
         if not results:
-            print("No matching chunkds found.")
+            print("No matching chunks found.")
             continue
 
         print("\nTop results:")

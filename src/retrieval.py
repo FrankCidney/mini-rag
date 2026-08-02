@@ -3,6 +3,35 @@ from dataclasses import dataclass
 
 from documents import Chunk
 
+STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "can",
+    "do",
+    "for",
+    "from",
+    "how",
+    "i",
+    "in",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "what",
+    "when",
+    "where",
+    "who",
+    "with",
+}
+
 @dataclass
 class SearchResult:
     chunk: Chunk
@@ -10,7 +39,11 @@ class SearchResult:
 
 def tokenize(text: str) -> set[str]:
     words = re.findall(r"\b\w+\b", text.lower())
-    return set(words)
+    return {
+        word
+        for word in words
+        if word not in STOP_WORDS
+    }
 
 def search_chunks(
         query: str,
@@ -41,4 +74,3 @@ def search_chunks(
     )
 
     return results[:top_k]
-
